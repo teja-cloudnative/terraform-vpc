@@ -12,8 +12,14 @@ resource "aws_subnet" "private-subnets" {
   availability_zone = element(var.AZ, count.index)
 }
 
-resource "aws_route_table_association" "rt-assoc" {
-  count          = var.SUBNETS
-  subnet_id      = element(aws_subnet.subnet.*.id, count.index )
-  route_table_id = aws_route_table.route-table.id
+resource "aws_route_table_association" "rt-assoc-public" {
+  count          = var.PUBLIC_SUBNETS
+  subnet_id      = element(aws_subnet.public-subnets.*.id, count.index )
+  route_table_id = aws_route_table.public-route-table.id
+}
+
+resource "aws_route_table_association" "rt-assoc-private" {
+  count          = var.PRIVATE_SUBNETS
+  subnet_id      = element(aws_subnet.private-subnets.*.id, count.index )
+  route_table_id = aws_route_table.private-route-table.id
 }
