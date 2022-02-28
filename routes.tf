@@ -35,3 +35,9 @@ resource "aws_route" "route-for-igw" {
   destination_cidr_block    = "0.0.0.0/0"
   gateway_id = aws_internet_gateway.gw.id
 }
+
+resource "aws_route" "route-for-ngw" {
+  route_table_id            = aws_route_table.private-route-table.id
+  destination_cidr_block    = "0.0.0.0/0"
+  nat_gateway_id = aws_nat_gateway.ngw.id
+}
