@@ -29,3 +29,11 @@ output "DEFAULT_VPC_ID" {
 output "DEFAULT_VPC_CIDR" {
   value = var.DEFAULT_VPC_CIDR
 }
+
+output "INTERNAL_HOSTED_ZONEID" {
+  value = data.aws_route53_zone.internal.zone_id
+}
+
+output "INTERNAL_HOSTED_ZONE_NAME" {
+  value = data.aws_route53_zone.internal.name
+}
