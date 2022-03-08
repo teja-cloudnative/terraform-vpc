@@ -17,7 +17,7 @@ pipeline {
 
      stage('Terraform Plan') {
        steps {
-         sh 'terraform plan -backend-config=env-${APPLY_ENV}/backend.tfvars'
+         sh 'terraform plan -var-file=env-${APPLY_ENV}/main.tfvars'
        }
      }
 
@@ -28,7 +28,7 @@ pipeline {
          submitter "admin"
        }
        steps {
-         sh 'terraform apply -auto-approve -backend-config=env-${APPLY_ENV}/backend.tfvars'
+         sh 'terraform apply -auto-approve -var-file=env-${APPLY_ENV}/main.tfvars'
        }
      }
 
