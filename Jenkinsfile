@@ -22,6 +22,11 @@ pipeline {
      }
 
      stage('Terraform Apply') {
+       when {
+         expression {
+           GIT_BRANCH == "origin/main"
+         }
+       }
        input {
          message "Approve for Apply?"
          ok "Approve"
